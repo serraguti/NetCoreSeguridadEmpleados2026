@@ -34,6 +34,15 @@ namespace NetCoreSeguridadEmpleados.Controllers
                     new ClaimsIdentity(
                         CookieAuthenticationDefaults.AuthenticationScheme,
                         ClaimTypes.Name, ClaimTypes.Role);
+                //EMPLEADO ARROYO: 7499 SERA NUESTRO
+                //ADMINISTRADOR
+                if (empleado.IdEmpleado == 7499)
+                {
+                    Claim claimAdmin =
+                        new Claim("Admin", "Soy el amo de la empresa");
+                    identity.AddClaim(claimAdmin);
+                }
+
                 Claim claimName =
                     new Claim(ClaimTypes.Name, username);
                 identity.AddClaim(claimName);
@@ -61,7 +70,17 @@ namespace NetCoreSeguridadEmpleados.Controllers
                     TempData["controller"].ToString();
                 string action =
                     TempData["action"].ToString();
-                return RedirectToAction(action, controller);
+                if (TempData["id"] != null)
+                {
+                    string id =
+                        TempData["id"].ToString();
+                    return RedirectToAction
+                        (action, controller, new {  id = id});
+                }
+                else
+                {
+                    return RedirectToAction(action, controller);
+                }
             }
             else
             {
