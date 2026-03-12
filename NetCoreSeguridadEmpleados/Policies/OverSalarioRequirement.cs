@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore.Metadata;
+using NetCoreSeguridadEmpleados.Repositories;
 using System.Security.Claims;
 
 namespace NetCoreSeguridadEmpleados.Policies
