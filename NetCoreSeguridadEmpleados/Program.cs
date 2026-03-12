@@ -28,7 +28,8 @@ builder.Services.AddAuthentication
 
 builder.Services
     .AddControllersWithViews
-    (options => options.EnableEndpointRouting = false);
+    (options => options.EnableEndpointRouting = false)
+    .AddSessionStateTempDataProvider();
 
 var app = builder.Build();
 
